@@ -1,6 +1,6 @@
 #pragma once
 
-#include "PrecompiledHeader.hpp"
+#include "PCH.hpp"
 
 #include "Amethyst/Application.hpp"
 #include "Amethyst/Logging.hpp"

@@ -23,7 +23,7 @@ set(SOURCES src/Application.cpp
 add_library(${PROJECT_NAME} ${SOURCES})
 target_include_directories(${PROJECT_NAME} PUBLIC include)
 
-target_precompile_headers(${PROJECT_NAME} PRIVATE include/PrecompiledHeader.hpp)
+target_precompile_headers(${PROJECT_NAME} PRIVATE include/PCH.hpp)
 
 target_link_libraries(${PROJECT_NAME} PUBLIC spdlog::spdlog)
 target_link_libraries(${PROJECT_NAME} PUBLIC glm::glm)

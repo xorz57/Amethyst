@@ -1,6 +1,6 @@
 #pragma once
 
-#include "PrecompiledHeader.hpp"
+#include "PCH.hpp"
 
 #include "Amethyst/ApplicationSettings.hpp"
 #include "Amethyst/LayerStack.hpp"

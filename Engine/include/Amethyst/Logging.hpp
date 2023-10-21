@@ -1,6 +1,6 @@
 #pragma once
 
-#include "PrecompiledHeader.hpp"
+#include "PCH.hpp"
 
 #include <spdlog/spdlog.h>
 

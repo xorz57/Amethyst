@@ -1,4 +1,4 @@
-#include "PrecompiledHeader.hpp"
+#include "PCH.hpp"
 
 #include "Amethyst/Application.hpp"
 
