@@ -1,0 +1,21 @@
+{
+  "name": "amethyst",
+  "version-string": "0.1.0",
+  "dependencies": [
+    "spdlog",
+    "glm",
+    "opengl",
+    "glfw3",
+    "glad",
+    {
+      "name": "imgui",
+      "features": [
+        "glfw-binding",
+        "opengl3-binding"
+      ]
+    },
+    "implot",
+    "entt",
+    "box2d"
+  ]
+}
