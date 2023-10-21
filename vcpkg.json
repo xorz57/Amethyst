@@ -4,7 +4,6 @@
   "dependencies": [
     "spdlog",
     "glm",
-    "opengl",
     "glfw3",
     "glad",
     {
