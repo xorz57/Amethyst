@@ -21,7 +21,9 @@ Shader::Shader(const char *vShaderPath, const char *fShaderPath) {
         vShaderFile.open(vShaderPath);
         fShaderFile.open(fShaderPath);
 
-        std::stringstream vShaderStream, fShaderStream;
+        std::stringstream vShaderStream;
+        std::stringstream fShaderStream;
+
         vShaderStream << vShaderFile.rdbuf();
         fShaderStream << fShaderFile.rdbuf();
 
@@ -30,38 +32,37 @@ Shader::Shader(const char *vShaderPath, const char *fShaderPath) {
 
         vShaderString = vShaderStream.str();
         fShaderString = fShaderStream.str();
-    } catch (std::ifstream::failure e) {
+    } catch (std::ifstream::failure &) {
         SERVER_ERROR("ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ");
     }
 
     const char *vShaderSource = vShaderString.c_str();
     const char *fShaderSource = fShaderString.c_str();
 
-    unsigned int vShader, fShader;
     int success;
-    char infoLog[1024];
+    std::array<char, 1024> infoLog{};
 
-    vShader = glCreateShader(GL_VERTEX_SHADER);
+    unsigned int vShader = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vShader, 1, &vShaderSource, nullptr);
     glCompileShader(vShader);
 
     glGetShaderiv(vShader, GL_COMPILE_STATUS, &success);
     if (!success) {
-        glGetShaderInfoLog(vShader, 1024, nullptr, infoLog);
+        glGetShaderInfoLog(vShader, infoLog.max_size(), nullptr, infoLog.data());
         SERVER_ERROR("ERROR::SHADER::VERTEX::COMPILATION_FAILED");
-        SERVER_ERROR("{}", infoLog);
-    };
+        SERVER_ERROR("{}", infoLog.data());
+    }
 
-    fShader = glCreateShader(GL_FRAGMENT_SHADER);
+    unsigned int fShader = glCreateShader(GL_FRAGMENT_SHADER);
     glShaderSource(fShader, 1, &fShaderSource, nullptr);
     glCompileShader(fShader);
 
     glGetShaderiv(fShader, GL_COMPILE_STATUS, &success);
     if (!success) {
-        glGetShaderInfoLog(fShader, 1024, nullptr, infoLog);
+        glGetShaderInfoLog(fShader, infoLog.max_size(), nullptr, infoLog.data());
         SERVER_ERROR("ERROR::SHADER::FRAGMENT::COMPILATION_FAILED");
-        SERVER_ERROR("{}", infoLog);
-    };
+        SERVER_ERROR("{}", infoLog.data());
+    }
 
     mID = glCreateProgram();
     glAttachShader(mID, vShader);
@@ -70,16 +71,16 @@ Shader::Shader(const char *vShaderPath, const char *fShaderPath) {
 
     glGetProgramiv(mID, GL_LINK_STATUS, &success);
     if (!success) {
-        glGetProgramInfoLog(mID, 1024, NULL, infoLog);
+        glGetProgramInfoLog(mID, infoLog.max_size(), nullptr, infoLog.data());
         SERVER_ERROR("ERROR::SHADER::PROGRAM::LINKING_FAILED");
-        SERVER_ERROR("{}", infoLog);
+        SERVER_ERROR("{}", infoLog.data());
     }
 
     glDeleteShader(vShader);
     glDeleteShader(fShader);
 }
 
-void Shader::Use() {
+void Shader::Use() const {
     glUseProgram(mID);
 }
 
