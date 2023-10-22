@@ -88,8 +88,6 @@ void Application::Run() {
     double accumulator = 0.0;
 
     while (!glfwWindowShouldClose(window)) {
-        glfwPollEvents();
-
         const double currTime = glfwGetTime();
         const double deltaTime = currTime - prevTime;
         prevTime = currTime;
@@ -130,6 +128,7 @@ void Application::Run() {
             glfwMakeContextCurrent(backup_current_context);
         }
 
+        glfwPollEvents();
         glfwSwapBuffers(window);
     }
 
