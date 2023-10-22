@@ -5,11 +5,15 @@
 namespace Amethyst {
     class Shader {
     public:
-        Shader() = default;
-        ~Shader() = default;
-        [[nodiscard]] std::uint32_t GetID() const;
+        Shader(const char *vShaderPath, const char *fShaderPath);
+
+        void Use();
+        void SetBool(const std::string &name, bool value) const;
+        void SetInt(const std::string &name, int value) const;
+        void SetFloat(const std::string &name, float value) const;
+        [[nodiscard]] unsigned int GetID() const;
 
     private:
-        std::uint32_t mID;
+        unsigned int mID;
     };
 }// namespace Amethyst
