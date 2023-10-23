@@ -20,6 +20,8 @@ set(SOURCES src/Application.cpp
             src/Shader.cpp)
 
 add_library(${PROJECT_NAME} ${SOURCES})
+add_library(Amethyst::Engine ALIAS ${PROJECT_NAME})
+
 target_include_directories(${PROJECT_NAME} PUBLIC include)
 
 target_precompile_headers(${PROJECT_NAME} PRIVATE include/PCH.hpp)
