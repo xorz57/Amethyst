@@ -95,8 +95,10 @@ void Application::Run() {
     while (!glfwWindowShouldClose(mWindow)) {
         const double currTime = glfwGetTime();
         const double deltaTime = currTime - prevTime;
+
         prevTime = currTime;
         accumulator += timeScale * glm::min(deltaTime, maxDeltaTime);
+
         while (accumulator > fixedDeltaTime) {
             mLayerStack.FixedUpdate(fixedDeltaTime);
             accumulator -= fixedDeltaTime;
