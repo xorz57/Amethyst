@@ -16,8 +16,7 @@ find_package(box2d REQUIRED)
 set(SOURCES src/Application.cpp
             src/Layer.cpp
             src/LayerStack.cpp
-            src/Logging.cpp
-            src/Shader.cpp)
+            src/Logging.cpp)
 
 add_library(${PROJECT_NAME} ${SOURCES})
 add_library(Amethyst::Engine ALIAS ${PROJECT_NAME})

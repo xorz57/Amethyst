@@ -2,10 +2,6 @@
 
 #include "Amethyst/Application.hpp"
 
-#define GLFW_INCLUDE_NONE
-#include <GLFW/glfw3.h>
-#include <glad/glad.h>
-
 #define IMGUI_DEFINE_MATH_OPERATORS
 #include <imgui.h>
 #include <imgui_impl_glfw.h>
@@ -15,7 +11,42 @@
 
 using namespace Amethyst;
 
-Application::Application(ApplicationSettings applicationSettings) : mApplicationSettings(std::move(applicationSettings)) {}
+Application::Application(ApplicationSettings applicationSettings) : mApplicationSettings(std::move(applicationSettings)) {
+    if (!glfwInit()) {
+        std::exit(EXIT_FAILURE);
+    }
+
+#if defined(__APPLE__)
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+#else
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
+#endif
+
+    mWindow = glfwCreateWindow(mApplicationSettings.width, mApplicationSettings.height, mApplicationSettings.title.c_str(), nullptr, nullptr);
+    if (mWindow == nullptr) {
+        glfwTerminate();
+        std::exit(EXIT_FAILURE);
+    }
+
+    glfwMakeContextCurrent(mWindow);
+
+    glfwSwapInterval(1);
+
+    if (!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress)) {
+        glfwDestroyWindow(mWindow);
+        glfwTerminate();
+        std::exit(EXIT_FAILURE);
+    }
+}
+
+Application::~Application() {
+    glfwDestroyWindow(mWindow);
+    glfwTerminate();
+}
 
 void Application::PushLayer(std::unique_ptr<Layer> layer) {
     mLayerStack.Push(std::move(layer));
@@ -26,37 +57,11 @@ void Application::PopLayer() {
 }
 
 void Application::Run() {
-    if (!glfwInit()) {
-        std::exit(EXIT_FAILURE);
-    }
-
 #if defined(__APPLE__)
     const char *glsl_version = "#version 150";
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #else
     const char *glsl_version = "#version 130";
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
 #endif
-
-    GLFWwindow *window = glfwCreateWindow(mApplicationSettings.width, mApplicationSettings.height, mApplicationSettings.title.c_str(), nullptr, nullptr);
-    if (window == nullptr) {
-        glfwTerminate();
-        std::exit(EXIT_FAILURE);
-    }
-
-    glfwMakeContextCurrent(window);
-
-    glfwSwapInterval(1);
-
-    if (!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress)) {
-        glfwDestroyWindow(window);
-        glfwTerminate();
-        std::exit(EXIT_FAILURE);
-    }
 
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
@@ -77,7 +82,7 @@ void Application::Run() {
         style.Colors[ImGuiCol_WindowBg].w = 1.0f;
     }
 
-    ImGui_ImplGlfw_InitForOpenGL(window, true);
+    ImGui_ImplGlfw_InitForOpenGL(mWindow, true);
     ImGui_ImplOpenGL3_Init(glsl_version);
 
     const double fixedDeltaTime = mApplicationSettings.fixedDeltaTime;
@@ -87,7 +92,7 @@ void Application::Run() {
     double prevTime = 0.0;
     double accumulator = 0.0;
 
-    while (!glfwWindowShouldClose(window)) {
+    while (!glfwWindowShouldClose(mWindow)) {
         const double currTime = glfwGetTime();
         const double deltaTime = currTime - prevTime;
         prevTime = currTime;
@@ -99,7 +104,7 @@ void Application::Run() {
 
         int display_w;
         int display_h;
-        glfwGetFramebufferSize(window, &display_w, &display_h);
+        glfwGetFramebufferSize(mWindow, &display_w, &display_h);
         glViewport(0, 0, display_w, display_h);
 
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -129,16 +134,14 @@ void Application::Run() {
         }
 
         glfwPollEvents();
-        glfwSwapBuffers(window);
+        glfwSwapBuffers(mWindow);
     }
 
     mLayerStack.Clear();
 
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplGlfw_Shutdown();
+
     ImPlot::DestroyContext();
     ImGui::DestroyContext();
-
-    glfwDestroyWindow(window);
-    glfwTerminate();
 }
