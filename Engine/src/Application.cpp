@@ -97,7 +97,7 @@ void Application::Run() {
         const double deltaTime = currTime - prevTime;
 
         prevTime = currTime;
-        accumulator += timeScale * glm::min(deltaTime, maxDeltaTime);
+        accumulator += timeScale * std::min(deltaTime, maxDeltaTime);
 
         while (accumulator > fixedDeltaTime) {
             mLayerStack.FixedUpdate(fixedDeltaTime);
