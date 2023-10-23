@@ -13,7 +13,7 @@ namespace Amethyst {
     class Application {
     public:
         explicit Application(ApplicationSettings applicationSettings);
-        virtual ~Application();
+        virtual ~Application() = default;
         void PushLayer(std::unique_ptr<Layer> layer);
         void PopLayer();
         void Run();
