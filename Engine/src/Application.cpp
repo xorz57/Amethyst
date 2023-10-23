@@ -43,11 +43,6 @@ Application::Application(ApplicationSettings applicationSettings) : mApplication
     }
 }
 
-Application::~Application() {
-    glfwDestroyWindow(mWindow);
-    glfwTerminate();
-}
-
 void Application::PushLayer(std::unique_ptr<Layer> layer) {
     mLayerStack.Push(std::move(layer));
 }
@@ -95,8 +90,10 @@ void Application::Run() {
     while (!glfwWindowShouldClose(mWindow)) {
         const double currTime = glfwGetTime();
         const double deltaTime = currTime - prevTime;
+
         prevTime = currTime;
-        accumulator += timeScale * glm::min(deltaTime, maxDeltaTime);
+        accumulator += timeScale * std::min(deltaTime, maxDeltaTime);
+
         while (accumulator > fixedDeltaTime) {
             mLayerStack.FixedUpdate(fixedDeltaTime);
             accumulator -= fixedDeltaTime;
@@ -144,4 +141,7 @@ void Application::Run() {
 
     ImPlot::DestroyContext();
     ImGui::DestroyContext();
+
+    glfwDestroyWindow(mWindow);
+    glfwTerminate();
 }

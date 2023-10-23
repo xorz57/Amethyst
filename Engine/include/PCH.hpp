@@ -1,8 +1,7 @@
 #pragma once
 
-#include <glm/glm.hpp>
-
 #include <array>
+#include <cmath>
 #include <cstdint>
 #include <cstdlib>
 #include <fstream>

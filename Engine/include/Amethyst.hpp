@@ -5,4 +5,3 @@
 #include "Amethyst/Layer.hpp"
 #include "Amethyst/LayerStack.hpp"
 #include "Amethyst/Logging.hpp"
-#include "Amethyst/Shader.hpp"
