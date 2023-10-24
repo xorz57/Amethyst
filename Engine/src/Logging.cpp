@@ -4,13 +4,13 @@
 
 using namespace Amethyst;
 
-std::shared_ptr<spdlog::logger> Logging::sServerLogger;
-std::shared_ptr<spdlog::logger> Logging::sClientLogger;
+std::shared_ptr<spdlog::logger> Logging::sEngineLogger;
+std::shared_ptr<spdlog::logger> Logging::sApplicationLogger;
 
 void Logging::Init() {
     spdlog::set_pattern("[%H:%M:%S %z] [%n] [%^---%L---%$] [thread %t] %v");
-    sServerLogger = spdlog::stdout_color_mt("Server");
-    sClientLogger = spdlog::stdout_color_mt("Client");
-    sServerLogger->set_level(spdlog::level::trace);
-    sClientLogger->set_level(spdlog::level::trace);
+    sEngineLogger = spdlog::stdout_color_mt("Server");
+    sApplicationLogger = spdlog::stdout_color_mt("Client");
+    sEngineLogger->set_level(spdlog::level::trace);
+    sApplicationLogger->set_level(spdlog::level::trace);
 }

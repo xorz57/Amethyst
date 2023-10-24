@@ -8,21 +8,21 @@ namespace Amethyst {
     class Logging {
     public:
         static void Init();
-        inline static std::shared_ptr<spdlog::logger> &GetServerLogger() { return sServerLogger; }
-        inline static std::shared_ptr<spdlog::logger> &GetClientLogger() { return sClientLogger; }
+        inline static std::shared_ptr<spdlog::logger> &GetEngineLogger() { return sEngineLogger; }
+        inline static std::shared_ptr<spdlog::logger> &GetApplicationLogger() { return sApplicationLogger; }
 
     private:
-        static std::shared_ptr<spdlog::logger> sServerLogger;
-        static std::shared_ptr<spdlog::logger> sClientLogger;
+        static std::shared_ptr<spdlog::logger> sEngineLogger;
+        static std::shared_ptr<spdlog::logger> sApplicationLogger;
     };
 }// namespace Amethyst
 
-#define SERVER_TRACE(...) Amethyst::Logging::GetServerLogger()->trace(__VA_ARGS__)
-#define SERVER_INFO(...) Amethyst::Logging::GetServerLogger()->info(__VA_ARGS__)
-#define SERVER_WARN(...) Amethyst::Logging::GetServerLogger()->warn(__VA_ARGS__)
-#define SERVER_ERROR(...) Amethyst::Logging::GetServerLogger()->error(__VA_ARGS__)
+#define ENGINE_TRACE(...) Amethyst::Logging::GetEngineLogger()->trace(__VA_ARGS__)
+#define ENGINE_INFO(...) Amethyst::Logging::GetEngineLogger()->info(__VA_ARGS__)
+#define ENGINE_WARN(...) Amethyst::Logging::GetEngineLogger()->warn(__VA_ARGS__)
+#define ENGINE_ERROR(...) Amethyst::Logging::GetEngineLogger()->error(__VA_ARGS__)
 
-#define CLIENT_TRACE(...) Amethyst::Logging::GetClientLogger()->trace(__VA_ARGS__)
-#define CLIENT_INFO(...) Amethyst::Logging::GetClientLogger()->info(__VA_ARGS__)
-#define CLIENT_WARN(...) Amethyst::Logging::GetClientLogger()->warn(__VA_ARGS__)
-#define CLIENT_ERROR(...) Amethyst::Logging::GetClientLogger()->error(__VA_ARGS__)
+#define APPLICATION_TRACE(...) Amethyst::Logging::GetApplicationLogger()->trace(__VA_ARGS__)
+#define APPLICATION_INFO(...) Amethyst::Logging::GetApplicationLogger()->info(__VA_ARGS__)
+#define APPLICATION_WARN(...) Amethyst::Logging::GetApplicationLogger()->warn(__VA_ARGS__)
+#define APPLICATION_ERROR(...) Amethyst::Logging::GetApplicationLogger()->error(__VA_ARGS__)
