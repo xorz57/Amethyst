@@ -81,19 +81,18 @@ void Application::Run() {
     ImGui_ImplOpenGL3_Init(glsl_version);
 
     const double fixedDeltaTime = mApplicationSettings.fixedDeltaTime;
-    const double maxDeltaTime = mApplicationSettings.maxDeltaTime;
     const double timeScale = mApplicationSettings.timeScale;
 
-    double prevTime = 0.0;
+    double reference = 0.0;
+
     double accumulator = 0.0;
 
     while (!glfwWindowShouldClose(mWindow)) {
-        const double currTime = glfwGetTime();
-        const double deltaTime = currTime - prevTime;
+        const double time = glfwGetTime();
+        const double deltaTime = time - reference;
+        reference = time;
 
-        prevTime = currTime;
-        accumulator += timeScale * std::min(deltaTime, maxDeltaTime);
-
+        accumulator += timeScale * deltaTime;
         while (accumulator > fixedDeltaTime) {
             mLayerStack.FixedUpdate(fixedDeltaTime);
             accumulator -= fixedDeltaTime;
@@ -117,7 +116,6 @@ void Application::Run() {
         ImGui::Begin("Engine");
         ImGui::Text("deltaTime      : %.5lf", deltaTime);
         ImGui::Text("fixedDeltaTime : %.5lf", fixedDeltaTime);
-        ImGui::Text("maxDeltaTime   : %.5lf", maxDeltaTime);
         ImGui::End();
 
         ImGui::Render();

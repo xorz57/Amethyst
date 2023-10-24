@@ -8,7 +8,6 @@ namespace Amethyst {
         int height = 600;
         std::string title = "Application";
         double fixedDeltaTime = 1.0 / 50.0;
-        double maxDeltaTime = 1.0 / 10.0;
         double timeScale = 1.0;
     };
 }// namespace Amethyst
