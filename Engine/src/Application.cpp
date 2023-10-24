@@ -43,6 +43,11 @@ Application::Application(ApplicationSettings applicationSettings) : mApplication
     }
 }
 
+Application::~Application() {
+    glfwDestroyWindow(mWindow);
+    glfwTerminate();
+}
+
 void Application::PushLayer(std::unique_ptr<Layer> layer) {
     mLayerStack.Push(std::move(layer));
 }
@@ -138,7 +143,4 @@ void Application::Run() {
 
     ImPlot::DestroyContext();
     ImGui::DestroyContext();
-
-    glfwDestroyWindow(mWindow);
-    glfwTerminate();
 }
