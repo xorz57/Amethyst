@@ -81,7 +81,6 @@ void Application::Run() {
     ImGui_ImplOpenGL3_Init(glsl_version);
 
     const double fixedDeltaTime = mApplicationSettings.fixedDeltaTime;
-    const double timeScale = mApplicationSettings.timeScale;
 
     double reference = 0.0;
 
@@ -92,7 +91,7 @@ void Application::Run() {
         const double deltaTime = time - reference;
         reference = time;
 
-        accumulator += timeScale * deltaTime;
+        accumulator += deltaTime;
         while (accumulator > fixedDeltaTime) {
             mLayerStack.FixedUpdate(fixedDeltaTime);
             accumulator -= fixedDeltaTime;
