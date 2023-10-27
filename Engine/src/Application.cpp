@@ -16,15 +16,10 @@ Application::Application(ApplicationSettings applicationSettings) : mApplication
         std::exit(EXIT_FAILURE);
     }
 
-#if defined(__APPLE__)
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-#else
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
-#endif
 
     mWindow = glfwCreateWindow(mApplicationSettings.width, mApplicationSettings.height, mApplicationSettings.title.c_str(), nullptr, nullptr);
     if (mWindow == nullptr) {
@@ -52,12 +47,6 @@ void Application::PopLayer() {
 }
 
 void Application::Run() {
-#if defined(__APPLE__)
-    const char *glsl_version = "#version 150";
-#else
-    const char *glsl_version = "#version 130";
-#endif
-
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImPlot::CreateContext();
@@ -78,7 +67,7 @@ void Application::Run() {
     }
 
     ImGui_ImplGlfw_InitForOpenGL(mWindow, true);
-    ImGui_ImplOpenGL3_Init(glsl_version);
+    ImGui_ImplOpenGL3_Init("#version 330");
 
     const double fixedDeltaTime = mApplicationSettings.fixedDeltaTime;
 
