@@ -110,7 +110,6 @@ void Application::Run() {
         ImGui::NewFrame();
 
         mLayerStack.Update(deltaTime);
-        mLayerStack.LateUpdate(deltaTime);
 
         ImGui::Begin("Engine");
         ImGui::Text("deltaTime      : %.5lf", deltaTime);

@@ -28,7 +28,3 @@ void EditorLayer::OnFixedUpdate(double dt) {
 void EditorLayer::OnUpdate(double dt) {
     // ...
 }
-
-void EditorLayer::OnLateUpdate(double dt) {
-    // ...
-}

@@ -11,7 +11,6 @@ namespace Amethyst {
         virtual void OnDetach() = 0;
         virtual void OnFixedUpdate(double dt) = 0;
         virtual void OnUpdate(double dt) = 0;
-        virtual void OnLateUpdate(double dt) = 0;
         [[nodiscard]] std::string GetName() const;
 
     private:

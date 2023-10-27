@@ -13,7 +13,6 @@ namespace Amethyst {
         void Clear();
         void FixedUpdate(double dt) const;
         void Update(double dt) const;
-        void LateUpdate(double dt) const;
         [[nodiscard]] std::size_t Size() const;
 
     private:

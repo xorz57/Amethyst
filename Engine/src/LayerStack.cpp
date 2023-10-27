@@ -33,12 +33,6 @@ void LayerStack::Update(double dt) const {
     }
 }
 
-void LayerStack::LateUpdate(double dt) const {
-    for (const std::unique_ptr<Layer> &layer: mLayers) {
-        layer->OnLateUpdate(dt);
-    }
-}
-
 std::size_t LayerStack::Size() const {
     return mLayers.size();
 }

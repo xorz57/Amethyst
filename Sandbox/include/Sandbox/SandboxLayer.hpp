@@ -9,5 +9,4 @@ public:
     void OnDetach() override;
     void OnFixedUpdate(double dt) override;
     void OnUpdate(double dt) override;
-    void OnLateUpdate(double dt) override;
 };

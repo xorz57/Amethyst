@@ -28,7 +28,3 @@ void SandboxLayer::OnFixedUpdate(double dt) {
 void SandboxLayer::OnUpdate(double dt) {
     // ...
 }
-
-void SandboxLayer::OnLateUpdate(double dt) {
-    // ...
-}
