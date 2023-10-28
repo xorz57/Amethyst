@@ -15,6 +15,9 @@ namespace Amethyst {
         explicit Application(ApplicationSettings applicationSettings);
         virtual ~Application();
 
+        Application &operator=(const Application &other) = delete;
+        Application &operator=(Application &&other) = delete;
+
         void PushLayer(std::unique_ptr<Layer> layer);
         void PopLayer();
         void Run();
