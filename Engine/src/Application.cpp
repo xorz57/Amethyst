@@ -38,6 +38,19 @@ Application::Application(ApplicationSettings applicationSettings) : mApplication
     }
 }
 
+Application::~Application() {
+    mLayerStack.Clear();
+
+    ImGui_ImplOpenGL3_Shutdown();
+    ImGui_ImplGlfw_Shutdown();
+
+    ImPlot::DestroyContext();
+    ImGui::DestroyContext();
+
+    glfwDestroyWindow(mWindow);
+    glfwTerminate();
+}
+
 void Application::PushLayer(std::unique_ptr<Layer> layer) {
     mLayerStack.Push(std::move(layer));
 }
@@ -80,6 +93,8 @@ void Application::Run() {
         const double deltaTime = time - reference;
         reference = time;
 
+        glfwPollEvents();
+
         accumulator += deltaTime;
         while (accumulator > fixedDeltaTime) {
             mLayerStack.FixedUpdate(fixedDeltaTime);
@@ -115,18 +130,6 @@ void Application::Run() {
             glfwMakeContextCurrent(backup_current_context);
         }
 
-        glfwPollEvents();
         glfwSwapBuffers(mWindow);
     }
-
-    mLayerStack.Clear();
-
-    ImGui_ImplOpenGL3_Shutdown();
-    ImGui_ImplGlfw_Shutdown();
-
-    ImPlot::DestroyContext();
-    ImGui::DestroyContext();
-
-    glfwDestroyWindow(mWindow);
-    glfwTerminate();
 }
