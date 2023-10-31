@@ -5,11 +5,11 @@ on:
       - main
     tags:
       - 'v*.*.*'
-env:
-  BUILD_TYPE: Release
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      BUILD_TYPE: Release
     permissions:
       contents: write
     steps:
