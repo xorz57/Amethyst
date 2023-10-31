@@ -41,9 +41,9 @@ jobs:
       - name: Test
         working-directory: ${{ github.workspace }}/build
         run: ctest -C ${{ env.BUILD_TYPE }}
-      - name: Doxygen Action
+      - name: Build Documentation
         uses: mattnotmitt/doxygen-action@v1.9.5
-      - name: Deploy
+      - name: Deploy Documentation
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
