@@ -2,8 +2,8 @@
 
 #include "PCH.hpp"
 
-#include "Amethyst/ApplicationSettings.hpp"
-#include "Amethyst/LayerStack.hpp"
+#include "Engine/ApplicationSettings.hpp"
+#include "Engine/LayerStack.hpp"
 
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>

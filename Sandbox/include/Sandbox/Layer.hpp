@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Amethyst/Layer.hpp"
+#include "Engine/Layer.hpp"
 
 namespace Amethyst::Sandbox {
     class Layer : public Amethyst::Engine::Layer {

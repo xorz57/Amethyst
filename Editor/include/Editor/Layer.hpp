@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Amethyst/Layer.hpp"
+#include "Engine/Layer.hpp"
 
 namespace Amethyst::Editor {
     class Layer : public Amethyst::Engine::Layer {

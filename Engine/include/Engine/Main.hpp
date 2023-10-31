@@ -2,8 +2,8 @@
 
 #include "PCH.hpp"
 
-#include "Amethyst/Application.hpp"
-#include "Amethyst/Logging.hpp"
+#include "Engine/Application.hpp"
+#include "Engine/Logging.hpp"
 
 namespace Amethyst::Engine {
     std::unique_ptr<Application> CreateApplication();

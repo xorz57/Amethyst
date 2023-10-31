@@ -1,4 +1,4 @@
-#include "Amethyst/Logging.hpp"
+#include "Engine/Logging.hpp"
 
 #include <spdlog/sinks/stdout_color_sinks.h>
 

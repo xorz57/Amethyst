@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Amethyst/Application.hpp"
-#include "Amethyst/Main.hpp"
+#include "Engine/Application.hpp"
+#include "Engine/Main.hpp"
 
 namespace Amethyst::Sandbox {
     class Application : public Amethyst::Engine::Application {

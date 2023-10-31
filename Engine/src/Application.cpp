@@ -1,6 +1,6 @@
 #include "PCH.hpp"
 
-#include "Amethyst/Application.hpp"
+#include "Engine/Application.hpp"
 
 #define IMGUI_DEFINE_MATH_OPERATORS
 #include <imgui.h>
