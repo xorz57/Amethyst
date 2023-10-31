@@ -4,8 +4,8 @@ project(Sandbox)
 
 set(CMAKE_CXX_STANDARD 20)
 
-set(SOURCES src/Sandbox.cpp
-            src/SandboxLayer.cpp)
+set(SOURCES src/Application.cpp
+            src/Layer.cpp)
 
 add_executable(${PROJECT_NAME} ${SOURCES})
 add_executable(Amethyst::Sandbox ALIAS ${PROJECT_NAME})
