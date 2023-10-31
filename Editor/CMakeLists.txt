@@ -4,8 +4,8 @@ project(Editor)
 
 set(CMAKE_CXX_STANDARD 20)
 
-set(SOURCES src/Editor.cpp
-            src/EditorLayer.cpp)
+set(SOURCES src/Application.cpp
+            src/Layer.cpp)
 
 add_executable(${PROJECT_NAME} ${SOURCES})
 add_executable(Amethyst::Editor ALIAS ${PROJECT_NAME})

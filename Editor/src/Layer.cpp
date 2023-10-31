@@ -1,4 +1,4 @@
-#include "Editor/EditorLayer.hpp"
+#include "Editor/Layer.hpp"
 
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
@@ -11,20 +11,22 @@
 
 #include <implot.h>
 
-EditorLayer::EditorLayer(std::string name) : Amethyst::Layer(std::move(name)) {}
+using namespace Amethyst::Editor;
 
-void EditorLayer::OnAttach() {
+Layer::Layer(std::string name) : Amethyst::Layer(std::move(name)) {}
+
+void Layer::OnAttach() {
     // ...
 }
 
-void EditorLayer::OnDetach() {
+void Layer::OnDetach() {
     // ...
 }
 
-void EditorLayer::OnFixedUpdate(double dt) {
+void Layer::OnFixedUpdate(double dt) {
     // ...
 }
 
-void EditorLayer::OnUpdate(double dt) {
+void Layer::OnUpdate(double dt) {
     // ...
 }
