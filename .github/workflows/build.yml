@@ -20,7 +20,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y libxinerama-dev libxcursor-dev xorg-dev libglu1-mesa-dev pkg-config
-      - name: Cache vcpkg dependencies
+      - name: Cache vcpkg Dependencies
         uses: actions/cache@v3
         with:
           path: |
