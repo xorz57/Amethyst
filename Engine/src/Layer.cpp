@@ -1,6 +1,6 @@
 #include "Amethyst/Layer.hpp"
 
-using namespace Amethyst;
+using namespace Amethyst::Engine;
 
 Layer::Layer(std::string name) : mName(std::move(name)) {}
 

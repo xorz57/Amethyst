@@ -2,7 +2,7 @@
 
 #include "PCH.hpp"
 
-namespace Amethyst {
+namespace Amethyst::Engine {
     class Layer {
     public:
         explicit Layer(std::string name);
@@ -16,4 +16,4 @@ namespace Amethyst {
     private:
         std::string mName;
     };
-}// namespace Amethyst
+}// namespace Amethyst::Engine

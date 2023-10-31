@@ -4,7 +4,7 @@
 
 #include <spdlog/spdlog.h>
 
-namespace Amethyst {
+namespace Amethyst::Engine {
     class Logging {
     public:
         static void Init();
@@ -15,7 +15,7 @@ namespace Amethyst {
         static std::shared_ptr<spdlog::logger> sEngineLogger;
         static std::shared_ptr<spdlog::logger> sApplicationLogger;
     };
-}// namespace Amethyst
+}// namespace Amethyst::Engine
 
 #define ENGINE_TRACE(...) Amethyst::Logging::GetEngineLogger()->trace(__VA_ARGS__)
 #define ENGINE_INFO(...) Amethyst::Logging::GetEngineLogger()->info(__VA_ARGS__)

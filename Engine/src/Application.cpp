@@ -9,7 +9,7 @@
 
 #include <implot.h>
 
-using namespace Amethyst;
+using namespace Amethyst::Engine;
 
 Application::Application(ApplicationSettings applicationSettings) : mApplicationSettings(std::move(applicationSettings)) {
     if (!glfwInit()) {

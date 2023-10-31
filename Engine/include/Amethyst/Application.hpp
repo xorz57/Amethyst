@@ -9,7 +9,7 @@
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
 
-namespace Amethyst {
+namespace Amethyst::Engine {
     class Application {
     public:
         explicit Application(ApplicationSettings applicationSettings);
@@ -27,4 +27,4 @@ namespace Amethyst {
         LayerStack mLayerStack;
         GLFWwindow *mWindow = nullptr;
     };
-}// namespace Amethyst
+}// namespace Amethyst::Engine

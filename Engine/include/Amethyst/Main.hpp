@@ -5,12 +5,12 @@
 #include "Amethyst/Application.hpp"
 #include "Amethyst/Logging.hpp"
 
-namespace Amethyst {
+namespace Amethyst::Engine {
     std::unique_ptr<Application> CreateApplication();
-}// namespace Amethyst
+}// namespace Amethyst::Engine
 
 int main() {
-    using namespace Amethyst;
+    using namespace Amethyst::Engine;
     Logging::Init();
     std::unique_ptr<Application> application = CreateApplication();
     application->Run();

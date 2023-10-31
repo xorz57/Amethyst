@@ -1,6 +1,6 @@
 #include "Amethyst/LayerStack.hpp"
 
-using namespace Amethyst;
+using namespace Amethyst::Engine;
 
 void LayerStack::Push(std::unique_ptr<Layer> layer) {
     mLayers.push_back(std::move(layer));

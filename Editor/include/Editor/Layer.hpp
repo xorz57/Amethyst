@@ -3,7 +3,7 @@
 #include "Amethyst/Layer.hpp"
 
 namespace Amethyst::Editor {
-    class Layer : public Amethyst::Layer {
+    class Layer : public Amethyst::Engine::Layer {
     public:
         explicit Layer(std::string name);
         void OnAttach() override;

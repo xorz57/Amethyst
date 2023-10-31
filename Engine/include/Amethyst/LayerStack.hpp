@@ -4,7 +4,7 @@
 
 #include "Amethyst/Layer.hpp"
 
-namespace Amethyst {
+namespace Amethyst::Engine {
     class LayerStack {
     public:
         LayerStack() = default;
@@ -18,4 +18,4 @@ namespace Amethyst {
     private:
         std::vector<std::unique_ptr<Layer>> mLayers;
     };
-}// namespace Amethyst
+}// namespace Amethyst::Engine

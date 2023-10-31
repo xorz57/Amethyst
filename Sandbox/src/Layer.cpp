@@ -13,7 +13,7 @@
 
 using namespace Amethyst::Sandbox;
 
-Layer::Layer(std::string name) : Amethyst::Layer(std::move(name)) {}
+Layer::Layer(std::string name) : Amethyst::Engine::Layer(std::move(name)) {}
 
 void Layer::OnAttach() {
     // ...

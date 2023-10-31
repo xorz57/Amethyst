@@ -2,7 +2,7 @@
 
 #include <spdlog/sinks/stdout_color_sinks.h>
 
-using namespace Amethyst;
+using namespace Amethyst::Engine;
 
 std::shared_ptr<spdlog::logger> Logging::sEngineLogger;
 std::shared_ptr<spdlog::logger> Logging::sApplicationLogger;
