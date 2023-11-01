@@ -11,4 +11,4 @@ namespace Amethyst::Editor {
         void OnFixedUpdate(double dt) override;
         void OnUpdate(double dt) override;
     };
-}// namespace Editor
+}// namespace Amethyst::Editor

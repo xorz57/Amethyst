@@ -8,4 +8,4 @@ namespace Amethyst::Editor {
     public:
         explicit Application(const Amethyst::Engine::ApplicationSettings &applicationSettings);
     };
-}// namespace Editor
+}// namespace Amethyst::Editor
