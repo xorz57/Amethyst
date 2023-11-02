@@ -2,8 +2,8 @@ name: Documentation
 
 on:
   push:
-    branches: [ "main" ]
-    tags: [ 'v*.*.*' ]
+    branches: ["main"]
+    tags: ["v*.*.*"]
 
 jobs:
   build:
@@ -25,7 +25,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libxinerama-dev libxcursor-dev xorg-dev libglu1-mesa-dev pkg-config
 
-      - name: Cache vcpkg dependencies
+      - name: Cache vcpkg_installed
         uses: actions/cache@v3
         with:
           path: |
@@ -60,5 +60,5 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs/html
           force_orphan: true
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
+          user_name: "github-actions[bot]"
+          user_email: "github-actions[bot]@users.noreply.github.com"
