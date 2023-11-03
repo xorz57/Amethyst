@@ -13,6 +13,8 @@ namespace Amethyst::Engine {
     class Application {
     public:
         explicit Application(ApplicationSettings applicationSettings);
+        Application(const Application &other) = delete;
+        Application(Application &&other) = delete;
         virtual ~Application();
 
         Application &operator=(const Application &other) = delete;
